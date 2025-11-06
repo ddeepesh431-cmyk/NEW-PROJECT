@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Karawali Garden - Restaurant & Hotel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Global Styles & Reset --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Light background for the content area */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #8B4513; /* Earthy/Brown tone for headings */
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #006400; /* Dark Green for titles */
+            border-bottom: 3px solid #FFD700; /* Gold underline */
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- Navigation Bar Styles (NEW) --- */
+        .navbar {
+            background-color: #1E90FF; /* Dark background */
+            overflow: hidden;
+            position: sticky; /* Keeps the nav bar visible when scrolling */
+            top: 0;
+            z-index: 100; /* Ensure it stays on top of other elements */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Center the navigation links */
+        }
+
+        .navbar li a {
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar li a:hover {
+            background-color: #FFD700; /* Gold background on hover */
+            color: #333; /* Dark text on hover */
+        }
+        
+        /* Highlight the current section in the main view */
+        .navbar li a.active {
+            background-color: #006400; /* Dark Green for active/current link */
+            color: #fff;
+        }
+
+        /* --- Header / Hero Section (Background Image) --- */
+        .hero-section {
+            /* IMPORTANT: Replace 'hotel-hero-bg.jpg' with your actual image path/name */
+            background: url('Main3.jpg') no-repeat center center/cover; 
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay for better text readability */
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            color: #FFD700; /* Gold color */
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .tagline {
+            font-size: 1.5em;
+            font-style: italic;
+            color: #eee;
+        }
+
+        .timing-box {
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+        }
+
+        .timing-box h2 {
+            color: #006400; /* Dark Green */
+            margin-top: 0;
+        }
+        .timing-box p {
+            color: #333;
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+
+        /* --- Intro Section --- */
+        .section-intro {
+            padding: 50px 0;
+            text-align: center;
+            background-color: #fff;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Menu Sections --- */
+        .menu-section {
+            padding: 60px 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            color: #fff; /* White text for better contrast on background images */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Section specific background images with a dark overlay */
+        .menu-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: 0;
+        }
+
+        .menu-section > * {
+            position: relative; /* Bring content above the overlay */
+            z-index: 1;
+        }
+
+        /* Background image place holders - **REPLACE WITH YOUR OWN IMAGES** */
+        .starter-bg {
+            background: url('starter-bg.jpg') no-repeat center center/cover;
+        }
+        .breakfast-bg {
+            background: url('breakfast-bg.jpg') no-repeat center center/cover;
+        }
+        .main-course-bg {
+            background: url('main-course-bg.jpg') no-repeat center center/cover;
+        }
+
+
+        /* Menu Item Grid */
+        .menu-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .menu-item {
+            background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white card */
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 5px solid #FFD700; /* Gold accent */
+            color: #333;
+            display: flex; /* Use flexbox for image and text alignment */
+            flex-direction: column; /* Stack image on top of text */
+            align-items: center; /* Center content horizontally */
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-item img {
+            max-width: 100%; /* Ensure image fits within the card */
+            height: 180px; /* Fixed height for consistency */
+            object-fit: cover; /* Crop image to cover area */
+            border-radius: 5px; /* Slightly rounded corners for images */
+            margin-bottom: 15px; /* Space between image and text */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .menu-item h3 {
+            margin-top: 0;
+            color: #D2691E; /* Chocolate Brown */
+            font-size: 1.4em;
+            text-align: center; /* Center item title */
+        }
+
+        .description {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+            text-align: center; /* Center description */
+            flex-grow: 1; /* Allow description to take available space */
+        }
+
+        .price {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #006400; /* Dark Green for price */
+            margin: 10px 0 0 0;
+            text-align: right;
+            width: 100%; /* Ensure price takes full width for alignment */
+        }
+
+        /* Lunch/Dinner Divisions */
+        .menu-division {
+            margin-top: 40px;
+        }
+
+        .division-title {
+            font-size: 2em;
+            text-align: center;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #eee;
+            color: #FFD700; /* Gold for division titles */
+        }
+
+        .veg-color {
+            color: #90EE90; /* Light Green */
+        }
+
+        .nonveg-color {
+            color: #FFA07A; /* Light Salmon/Reddish */
+        }
+
+        .divider {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(255,255,255,0), #FFD700, rgba(255,255,255,0));
+            margin: 40px 0;
+        }
+
+        /* --- Footer --- */
+        .footer-section {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            margin-top: 40px;
+            border-radius: 8px;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3em;
+            }
+            .timing-box {
+                padding: 10px 20px;
+            }
+            .section-title {
+                font-size: 2em;
+            }
+            .menu-items-grid {
+                grid-template-columns: 1fr;
+            }
+            /* Adjust nav for small screens */
+            .navbar ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <script>
+        // Optional: Simple JavaScript for sticky nav or active link highlight if needed
+        // For a simple static page, the CSS 'position: sticky' usually suffices.
+    </script>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#starters">Starters</a></li>
+            <li><a href="#breakfast">Breakfast</a></li>
+            <li><a href="#lunch-dinner">Lunch & Dinner</a></li>
+            <li><a href="#hotel-info">Hotel Info</a></li> 
+        </ul>
+    </nav>
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1>Welcome to Hotel <br>The Karawali Garden</h1>
+	     
+            <p class="tagline">Experience the finest coastal and traditional cuisine.</p>
+            <div class="timing-box">
+                <h2>Operating Hours: </h2>
+                <p><strong>Every Day:</strong> Morning 8:00 AM to Night 11:00 PM</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="menu-container">
+        
+        <section id="about" class="section-intro">
+            <h2 class="section-title">A Taste of Karawali's Best</h2>
+            <p>Nestled in the heart of nature, The Karawali Garden offers a culinary journey inspired by the Konkan coast and rich Indian traditions. Our dishes are crafted with fresh, locally sourced ingredients to bring you an authentic and unforgettable dining experience.</p>
+	                    <img src="Main image1.jpg" alt="Main image1"> 	
+        </section>
+
+        <section id="starters" class="menu-section starter-bg">
+            <h2 class="section-title">🔥 Starters & Appetizers 🔥</h2>
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <img src="Paneer-Tikka.jpg" alt="Paneer Tikka"> <h3>Paneer Tikka</h3>
+                    <p class="description">Marinated cottage cheese grilled to perfection.</p>
+                    <p class="price">₹ 299</p>
+                </div>
+                <div class="menu-item">
+                    <img src="chicken-65.jpg" alt="Chicken 65"> <h3>Chicken 65</h3>
+                    <p class="description">Spicy, deep-fried chicken cubes, a Southern delight.</p>
+                    <p class="price">₹ 349</p>
+                </div>
+                <div class="menu-item">
+                    <img src="veg-spring-rolls.jpg" alt="veg-spring-rolls"> <h3>Vegetable Spring Rolls</h3>
+                    <p class="description">Crispy rolls filled with seasoned vegetables.</p>
+                    <p class="price">₹ 249</p>
+                </div>
+                <div class="menu-item">
+                    <img src="prawn-fry.jpeg" alt="Prawn Fry"> <h3>Prawn Fry (Coastal Style)</h3>
+                    <p class="description">Fresh prawns tossed in local coastal spices.</p>
+                    <p class="price">₹ 429</p>
+                </div>
+    		    <div class="menu-item">
+                    <img src="Gobi-Manchurian.jpg" alt="Gobi Manchurian"> <h3>Gobi Manchurian</h3>
+                    <p class="description">Crispy on the outside, soft inside Spicy, tangy, and slightly sweet.</p>
+                    <p class="price">₹ 120</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="breakfast" class="menu-section breakfast-bg">
+            <h2 class="section-title">☀️ Morning Delights: Breakfast (8 AM - 11 AM) ☀️</h2>
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <img src="masala-dosa.jpg" alt="Masala Dosa"> <h3>Masala Dosa with Sambar & Chutney</h3>
+                    <p class="description">Crispy rice crepe with a spiced potato filling.</p>
+                    <p class="price">₹ 149</p>
+                </div>
+                <div class="menu-item">
+                    <img src="poha.jpg" alt="Poha"> <h3>Poha (Kanda-Batata)</h3>
+                    <p class="description">Light, seasoned flattened rice with onions and potatoes.</p>
+                    <p class="price">₹ 99</p>
+                </div>
+                <div class="menu-item">
+                    <img src="aloo-paratha.jpg" alt="Aloo Paratha"> <h3>Aloo Paratha (2 Pcs)</h3>
+                    <p class="description">Whole wheat flatbread stuffed with spiced mashed potato.</p>
+                    <p class="price">₹ 129</p>
+                </div>
+                <div class="menu-item">
+                    <img src="idli-vada-combo.jpg" alt="Idli-Vada Combo"> <h3>Idli-Vada Combo</h3>
+                    <p class="description">Soft steamed rice cakes and savory lentil fritters.</p>
+                    <p class="price">₹ 139</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="lunch-dinner" class="menu-section main-course-bg">
+            <h2 class="section-title">🍽️ Lunch & Dinner (11 AM - 11 PM) 🍽️</h2>
+
+            <div class="menu-division">
+                <h3 class="division-title veg-color">🌿 Vegetarian Specialties 🌿</h3>
+                <div class="menu-items-grid">
+                    <div class="menu-item">
+                        <img src="paneer-butter-masala.jpg" alt="Paneer Butter Masala"> <h3>Paneer Butter Masala</h3>
+                        <p class="description">Cottage cheese in a rich, creamy tomato gravy.</p>
+                        <p class="price">₹ 379</p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="dal-makhani.jpg" alt="Dal Makhani"> <h3>Dal Makhani</h3>
+                        <p class="description">Black lentils simmered overnight with butter and cream.</p>
+                        <p class="price">₹ 299</p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="veg-biryani.jpg" alt="Vegetable Biryani"> <h3>Vegetable Biryani (Dum Style)</h3>
+                        <p class="description">Aromatic rice and vegetable layers cooked in *dum*.</p>
+                        <p class="price">₹ 349</p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="palak-paneer.jpg" alt="Palak Paneer"> <h3>Palak Paneer</h3>
+                        <p class="description">Fresh spinach puree with soft cubes of paneer.</p>
+                        <p class="price">₹ 359</p>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="divider">
+
+            <div class="menu-division">
+                <h3 class="division-title nonveg-color">🍗 Non-Vegetarian Delights 🍖</h3>
+                <div class="menu-items-grid">
+                    <div class="menu-item">
+                        <img src="butter-chicken.jpg" alt="Butter Chicken"> <h3>Butter Chicken (Murgh Makhani)</h3>
+                        <p class="description">Tender chicken in a classic, mildly spiced tomato gravy.</p>
+                        <p class="price">₹ 449</p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="coastal-fish-curry.jpg" alt="Coastal Fish Curry"> <h3>Coastal Fish Curry (Surmai/Kingfish)</h3>
+                        <p class="description">Local kingfish cooked in a tangy Karawali style curry.</p>
+                        <p class="price">₹ 599</p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="mutton-rogan-josh.jpg" alt="Mutton Rogan Josh"> <h3>Mutton Rogan Josh</h3>
+                        <p class="description">Slow-cooked mutton in a rich, red Kashmiri gravy.</p>
+                        <p class="price">₹ 529</p>
+                    </div>
+                    <div class="menu-item">
+                        <img src="chicken-biryani.jpg" alt="Chicken Biryani"> <h3>Chicken Biryani (Hyderabadi)</h3>
+                        <p class="description">Spicy, fragrant basmati rice with marinated chicken.</p>
+                        <p class="price">₹ 429</p>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <section id="hotel-info" class="section-intro">
+            <h2 class="section-title">🏨 The Karawali Garden Hotel 🛌</h2>
+            <p>Beyond our exquisite dining, we offer comfortable and luxurious stays. Please contact our reception for room availability and booking details!</p>
+            <p style="font-size: 1.2em; font-weight: bold; color: #FF69B4;">Call us at +91-6362627645 or visit the front desk!<br> Om Beach Road,Gokarna</p>
+        </section>
+
+
+        <footer class="footer-section">
+            <p>&copy; 2025 The Karawali Garden. All Rights Reserved.</p>
+            <p>Visit our **Hotel Booking** desk or call us for reservations.</p>
+        </footer>
+
+    </main>
+</body>
+</html>
